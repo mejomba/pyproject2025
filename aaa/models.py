@@ -13,7 +13,7 @@ class CustomUser(AbstractUser):
     is_deleted = models.BooleanField(default=False)
     delete_date = models.DateTimeField(null=True, blank=True)
     is_special = models.BooleanField(default=False)
-    creator_user = models.ForeignKey('self', on_delete=models.DO_NOTHING, null=True, blank=True, related_name='creators')
-    editor_user = models.ForeignKey('self', on_delete=models.DO_NOTHING, null=True, blank=True, related_name='editors')
+    creator_user = models.ForeignKey('self', on_delete=models.DO_NOTHING, null=True, blank=True, related_name='user_created')
+    editor_user = models.ForeignKey('self', on_delete=models.DO_NOTHING, null=True, blank=True, related_name='user_edited')
 
     USERNAME_FIELD = 'phone'
