@@ -1,8 +1,6 @@
 from django.test import TestCase
-import uuid
 from rest_framework.test import APIClient
-from rest_framework_simplejwt.tokens import RefreshToken
-from aaa.models import CustomUser
+from aaa.models.user_models import CustomUser
 
 
 class TestCustomUserModel(TestCase):
