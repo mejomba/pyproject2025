@@ -3,8 +3,8 @@ prod = False
 test = False
 
 if dev:
-    from settings.dev import *
+    from config.setting.dev import *
 elif prod:
-    from settings.prod import *
+    from config.setting.prod import *
 elif test:
-    from settings.test import *
+    from config.setting.test import *

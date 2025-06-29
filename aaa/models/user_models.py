@@ -2,6 +2,8 @@ from django.core.validators import RegexValidator
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+from aaa.models.managers import CustomUserManager
+
 
 class CustomUser(AbstractUser):
     username = None
@@ -17,3 +19,5 @@ class CustomUser(AbstractUser):
     editor_user = models.ForeignKey('self', on_delete=models.DO_NOTHING, null=True, blank=True, related_name='user_edited')
 
     USERNAME_FIELD = 'phone'
+
+    objects = CustomUserManager()
