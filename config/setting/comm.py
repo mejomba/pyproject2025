@@ -107,3 +107,10 @@ SIMPLE_JWT = {
 }
 
 OTP_LIFE_TIME = 2  # min
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'auth-attempts-cache',
+    }
+}
