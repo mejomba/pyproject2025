@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'aaa',
     'core',
     'blog',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
@@ -100,6 +101,7 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
     'AUTH_HEADER_TYPES': ('Bearer',),
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'BLACKLIST_AFTER_ROTATION': True,
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
 }

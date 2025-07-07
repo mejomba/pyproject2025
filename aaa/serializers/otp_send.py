@@ -6,6 +6,7 @@ import random
 from django.conf import settings
 
 
+# noinspection PyAbstractClass
 class OTPSendSerializer(serializers.Serializer):
     phone = serializers.CharField()
 
