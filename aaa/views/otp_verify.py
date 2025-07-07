@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
 from aaa.serializers.otp_verify import OTPVerifySerializer
 from aaa.serializers.auth_signup import SignupSerializer
+from aaa.utils.jwt_tokens import generate_jwt_response
 
 
 class OTPVerifyView(APIView):
@@ -11,10 +12,8 @@ class OTPVerifyView(APIView):
         serializer = OTPVerifySerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
-            refresh = RefreshToken.for_user(user)
-            return Response({
-                'user': SignupSerializer(user).data,
-                'access': str(refresh.access_token),
-                'refresh': str(refresh)
-            }, status=status.HTTP_200_OK)
+            return Response(
+                generate_jwt_response(user, SignupSerializer),
+                status=status.HTTP_200_OK
+            )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
