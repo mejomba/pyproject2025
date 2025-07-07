@@ -103,3 +103,5 @@ SIMPLE_JWT = {
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
 }
+
+OTP_LIFE_TIME = 2  # min
