@@ -10,19 +10,19 @@ from datetime import timedelta
 @pytest.mark.django_db
 def test_verify_otp_success():
     OTP.objects.create(
-        phone='09120001111',
+        phone='09120005555',
         code='123456',
-        expires_at=timezone.now() + timedelta(minutes=5)
+        expires_at=timezone.now() + timedelta(minutes=1)
     )
 
     client = APIClient()
     url = reverse('auth_otp_verify')
-    response = client.post(url, {'phone': '09120001111', 'code': '123456'}, format='json')
+    response = client.post(url, {'phone': '09120005555', 'code': '123456'}, format='json')
 
     assert response.status_code == 200
     assert 'access' in response.data
     assert 'refresh' in response.data
-    assert CustomUser.objects.filter(phone='09120001111').exists()
+    assert CustomUser.objects.filter(phone='09120005555').exists()
 
 
 @pytest.mark.django_db

@@ -16,4 +16,5 @@ class OTPVerifyView(APIView):
                 generate_jwt_response(user, SignupSerializer),
                 status=status.HTTP_200_OK
             )
+        print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
