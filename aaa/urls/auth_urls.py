@@ -6,6 +6,7 @@ from aaa.views.auth_logout import LogoutView
 from aaa.views.auth_signup import CustomTokenObtainPairView, PhoneCheckAPIView, SignupView
 from aaa.views.otp_send import OTPSendView
 from aaa.views.otp_verify import OTPVerifyView
+from aaa.views.user_profile import UserProfileView
 
 urlpatterns = [
     path('api/auth/check-phone/', PhoneCheckAPIView.as_view(), name='phone_check'),
@@ -16,4 +17,5 @@ urlpatterns = [
     path('otp/verify/', OTPVerifyView.as_view(), name='auth_otp_verify'),
     path('login/', LoginView.as_view(), name='auth_login'),
     path('logout/', LogoutView.as_view(), name='auth_logout'),
+    path('profile/', UserProfileView.as_view(), name='auth_profile'),
 ]

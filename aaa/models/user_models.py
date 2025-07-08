@@ -17,6 +17,12 @@ class CustomUser(AbstractUser):
     is_special = models.BooleanField(default=False)
     creator_user = models.ForeignKey('self', on_delete=models.DO_NOTHING, null=True, blank=True, related_name='user_created')
     editor_user = models.ForeignKey('self', on_delete=models.DO_NOTHING, null=True, blank=True, related_name='user_edited')
+    # aaa/models.py (داخل CustomUser)
+
+    full_name = models.CharField(max_length=100, blank=True, null=True)
+    gender = models.CharField(max_length=10, choices=[('male', 'Male'), ('female', 'Female')], blank=True, null=True)
+    birth_date = models.DateField(blank=True, null=True)
+    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
 
     USERNAME_FIELD = 'phone'
 
