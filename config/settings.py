@@ -1,6 +1,6 @@
-dev = True
+dev = False
 prod = False
-test = False
+test = True
 
 if dev:
     from config.setting.dev import *

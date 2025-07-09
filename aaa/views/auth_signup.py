@@ -8,6 +8,7 @@ from aaa.models.user_models import CustomUser
 from aaa.serializers.auth_signup import SignupSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from aaa.utils.jwt_tokens import generate_jwt_response
+from device_tracker.utils import track_device
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -72,8 +73,7 @@ class SignupView(APIView):
         serializer = SignupSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
-            return Response(
-                generate_jwt_response(user, SignupSerializer),
-                status=status.HTTP_201_CREATED
-            )
+            refresh = RefreshToken.for_user(user)
+            track_device(request, user, refresh)
+            return Response(generate_jwt_response(user, SignupSerializer), status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
