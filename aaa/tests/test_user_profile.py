@@ -24,7 +24,8 @@ def test_update_user_profile():
     url = reverse('auth_profile')
 
     data = {
-        'full_name': 'Ali Testi',
+        'first_name': 'Ali',
+        'last_name': 'Testi',
         'email': 'ali@example.com',
         'gender': 'male'
     }
@@ -32,3 +33,18 @@ def test_update_user_profile():
     assert response.status_code == 200
     user.refresh_from_db()
     assert user.full_name == 'Ali Testi'
+
+
+@pytest.mark.django_db
+def test_full_name_auto_updates():
+    user = CustomUser.objects.create_user(
+        phone='0912XXXXXXX', password='pass123',
+        first_name='Ali', last_name='Test'
+    )
+    assert user.full_name == 'Ali Test'
+
+    user.first_name = 'Reza'
+    user.last_name = 'Taj'
+    user.save()
+
+    assert user.full_name == 'Reza Taj'

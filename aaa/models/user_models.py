@@ -27,3 +27,7 @@ class CustomUser(AbstractUser):
     USERNAME_FIELD = 'phone'
 
     objects = CustomUserManager()
+
+    def save(self, *args, **kwargs):
+        self.full_name = f"{self.first_name.strip()} {self.last_name.strip()}".strip()
+        super().save(*args, **kwargs)
