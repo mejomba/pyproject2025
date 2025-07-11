@@ -48,8 +48,8 @@ class AbstractCommModel(models.Model):
 
 
 class AbstractCommWithUserModel(AbstractCommModel):
-    creator_user = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, related_name='%(app_label)s_creator_%(model_name)s')
-    editor_user = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, related_name='%(app_label)s_editor_%(model_name)s')
+    creator_user = models.ForeignKey(CustomUser, null=True, blank=True, on_delete=models.DO_NOTHING, related_name='%(app_label)s_creator_%(model_name)s')
+    editor_user = models.ForeignKey(CustomUser, null=True, blank=True, on_delete=models.DO_NOTHING, related_name='%(app_label)s_editor_%(model_name)s')
 
     class Meta:
         abstract = True
