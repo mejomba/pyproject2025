@@ -9,6 +9,7 @@ urlpatterns = [
 
     path('api/v1/', include([
         # path('courses/', include('courses.urls', namespace='courses')),
+        path('courses/', include(('courses.urls', 'courses'), namespace='courses')),
         # … بقیه اپ‌ها
     ])),
 
