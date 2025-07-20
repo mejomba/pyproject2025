@@ -23,7 +23,7 @@ class TestCourseAPI:
         assert response.data == []
 
     def test_create_course(self):
-        data = {'title': 'API Course', 'description': 'Desc', 'price': 10.0}
+        data = {'title': 'API Course', 'description': 'Desc', 'price': 10.0, 'instructor': self.user.id}
         response = self.client.post(self.list_url, data, format='json')
         assert response.status_code == 201
         assert Course.objects.filter(title='API Course').exists()

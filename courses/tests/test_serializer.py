@@ -33,7 +33,7 @@ def test_valid_course_serializer():
         'image': None,
         'category': '1',
         'status': 'published',
-        'instructor': instructor,
+        'instructor': instructor.pk,
         'creator_user': instructor,
         'editor_user': instructor
     }
@@ -53,7 +53,7 @@ def test_read_only_fields_are_ignored():
         'slug': 'should-not-come',
         'created_at': '2022-01-01T00:00:00Z',
         'updated_at': '2022-01-02T00:00:00Z',
-        'instructor': instructor,
+        'instructor': instructor.pk,
         'creator_user': instructor,
         'editor_user': instructor
     }
