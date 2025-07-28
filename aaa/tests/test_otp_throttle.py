@@ -31,7 +31,7 @@ def test_otp_verify_throttle_blocks_after_5_failures():
     phone = otp.phone
 
     client = APIClient()
-    url = reverse('auth_otp_verify')
+    url = reverse('auth:auth_otp_verify')
 
     for _ in range(5):
         response = client.post(url, {'phone': phone, 'code': '000000'})
@@ -49,7 +49,7 @@ def test_otp_verify_throttle_resets_on_success():
     code = otp.code
 
     client = APIClient()
-    url = reverse('auth_otp_verify')
+    url = reverse('auth:auth_otp_verify')
 
     for _ in range(2):
         client.post(url, {'phone': phone, 'code': 'wrongcode'})

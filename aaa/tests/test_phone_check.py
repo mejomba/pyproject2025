@@ -13,7 +13,7 @@ def api_client():
 def test_phone_check_existing_user_password_method(api_client):
     # Arrange
     user = CustomUser.objects.create_user(phone="09123456789", password="testpass")
-    url = reverse('phone_check')
+    url = reverse('auth:phone_check')
     data = {
         "phone": "09123456789",
         "method": "password"
@@ -33,7 +33,7 @@ def test_phone_check_existing_user_password_method(api_client):
 
 @pytest.mark.django_db
 def test_phone_check_new_user_password_method(api_client):
-    url = reverse('phone_check')
+    url = reverse('auth:phone_check')
     data = {
         "phone": "09987654321",
         "method": "password"
@@ -52,7 +52,7 @@ def test_phone_check_new_user_password_method(api_client):
 @pytest.mark.django_db
 def test_phone_check_otp_method_existing_user(api_client):
     CustomUser.objects.create_user(phone="09111111111", password="otp-pass")
-    url = reverse('phone_check')
+    url = reverse('auth:phone_check')
     data = {
         "phone": "09111111111",
         "method": "otp"
@@ -70,7 +70,7 @@ def test_phone_check_otp_method_existing_user(api_client):
 
 @pytest.mark.django_db
 def test_phone_check_missing_fields(api_client):
-    url = reverse('phone_check')
+    url = reverse('auth:phone_check')
     response = api_client.post(url, {"phone": ""}, format='json')
 
     assert response.status_code == 400

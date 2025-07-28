@@ -9,7 +9,7 @@ def test_get_user_profile():
     user = CustomUser.objects.create_user(phone='0912XXXXXXX', password='pass123')
     client = APIClient()
     client.force_authenticate(user)
-    url = reverse('auth_profile')
+    url = reverse('auth:auth_profile')
 
     response = client.get(url)
     assert response.status_code == 200
@@ -21,7 +21,7 @@ def test_update_user_profile():
     user = CustomUser.objects.create_user(phone='0912XXXXXXX', password='pass123')
     client = APIClient()
     client.force_authenticate(user)
-    url = reverse('auth_profile')
+    url = reverse('auth:auth_profile')
 
     data = {
         'first_name': 'Ali',

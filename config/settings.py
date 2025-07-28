@@ -1,4 +1,4 @@
-dev = False
+dev = True
 prod = False
 test = True
 

@@ -7,6 +7,7 @@ from aaa.models.managers import CustomUserManager
 
 class CustomUser(AbstractUser):
     username = None
+    password = models.CharField("password", max_length=128, null=True)
     phone = models.CharField(verbose_name='تلفن همراه', max_length=11, unique=True, null=True, blank=True,
                              validators=[RegexValidator(r'^09\d{9}',
                                                         message='تلفن نا معتبر',

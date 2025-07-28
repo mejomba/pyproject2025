@@ -7,7 +7,7 @@ from aaa.models.user_models import CustomUser
 @pytest.mark.django_db
 def test_signup_success():
     client = APIClient()
-    url = reverse('auth_signup')
+    url = reverse('auth:auth_signup')
     data = {
         'phone': '09123456789',
         'password': 'securepass123'
@@ -26,7 +26,7 @@ def test_signup_success():
 def test_signup_with_existing_phone_should_fail():
     CustomUser.objects.create_user(phone='09123456789', password='existingpass')
     client = APIClient()
-    url = reverse('auth_signup')
+    url = reverse('auth:auth_signup')
     data = {
         'phone': '09123456789',
         'password': 'anotherpass'

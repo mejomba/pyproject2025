@@ -13,7 +13,7 @@ def test_logout_success():
     client = APIClient()
     client.force_authenticate(user)
 
-    url = reverse('auth_logout')
+    url = reverse('auth:auth_logout')
     response = client.post(url, {'refresh': str(refresh)})
 
     assert response.status_code == 205
@@ -28,6 +28,6 @@ def test_logout_with_invalid_token():
     client = APIClient()
     client.force_authenticate(user)
 
-    url = reverse('auth_logout')
+    url = reverse('auth:auth_logout')
     response = client.post(url, {'refresh': 'invalidtoken'})
     assert response.status_code == 400

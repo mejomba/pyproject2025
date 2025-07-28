@@ -9,7 +9,7 @@ def test_login_success():
     CustomUser.objects.create_user(phone="09120001111", password="secure123")
 
     client = APIClient()
-    url = reverse('auth_login')
+    url = reverse('auth:auth_login')
     response = client.post(url, {'phone': '09120001111', 'password': 'secure123'}, format='json')
 
     assert response.status_code == 200
@@ -23,7 +23,7 @@ def test_login_wrong_password():
     CustomUser.objects.create_user(phone="09120001111", password="secure123")
 
     client = APIClient()
-    url = reverse('auth_login')
+    url = reverse('auth:auth_login')
     response = client.post(url, {'phone': '09120001111', 'password': 'wrongpass'}, format='json')
 
     assert response.status_code == 400

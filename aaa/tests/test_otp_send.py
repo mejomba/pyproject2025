@@ -7,7 +7,7 @@ from aaa.models.otp import OTP
 @pytest.mark.django_db
 def test_send_otp_creates_entry():
     client = APIClient()
-    url = reverse('auth_otp_send')
+    url = reverse('auth:auth_otp_send')
     data = {'phone': '09123456789'}
 
     response = client.post(url, data, format='json')

@@ -16,7 +16,7 @@ def test_verify_otp_success():
     )
 
     client = APIClient()
-    url = reverse('auth_otp_verify')
+    url = reverse('auth:auth_otp_verify')
     response = client.post(url, {'phone': '09120005555', 'code': '123456'}, format='json')
 
     assert response.status_code == 200
@@ -34,7 +34,7 @@ def test_verify_invalid_code():
     )
 
     client = APIClient()
-    url = reverse('auth_otp_verify')
+    url = reverse('auth:auth_otp_verify')
     response = client.post(url, {'phone': '09120001111', 'code': '999999'}, format='json')
 
     assert response.status_code == 400

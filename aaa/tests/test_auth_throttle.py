@@ -11,7 +11,7 @@ def test_login_throttle_blocks_after_5_failures():
     CustomUser.objects.create_user(phone='09120001111', password='correctpass')
 
     client = APIClient()
-    url = reverse('auth_login')
+    url = reverse('auth:auth_login')
 
     for _ in range(5):
         response = client.post(url, {'phone': '09120001111', 'password': 'wrongpass'})
@@ -28,7 +28,7 @@ def test_login_throttle_resets_on_success():
     user = CustomUser.objects.create_user(phone='09120002222', password='correctpass')
 
     client = APIClient()
-    url = reverse('auth_login')
+    url = reverse('auth:auth_login')
 
     for _ in range(3):
         client.post(url, {'phone': '09120002222', 'password': 'wrongpass'})
