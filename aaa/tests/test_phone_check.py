@@ -64,7 +64,7 @@ def test_phone_check_otp_method_existing_user(api_client):
     assert response.data == {
         "exists": True,
         "method": "otp",
-        "next_step": "send_otp"
+        "next_step": "login"
     }
 
 

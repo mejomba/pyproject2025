@@ -12,7 +12,8 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault('is_active', True)
 
         user = self.model(phone=phone, **extra_fields)
-        user.set_password(password)
+        if password:
+            user.set_password(password)
         user.save(using=self._db)
         return user
 

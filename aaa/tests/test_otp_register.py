@@ -1,4 +1,5 @@
 import pytest
+from django.urls import reverse
 from django.utils import timezone
 from datetime import timedelta
 from rest_framework.test import APIClient
@@ -19,7 +20,7 @@ def test_otp_register_success():
         expires_at=timezone.now() + timedelta(minutes=5),
     )
 
-    response = client.post('/api/v1/auth/otp/register/', {
+    response = client.post(reverse('auth:otp-register'), {
         'phone': phone,
         'code': code
     })

@@ -64,7 +64,7 @@ class PhoneCheckAPIView(APIView):
         if method == 'password':
             return 'login' if exists else 'register'
         elif method == 'otp':
-            return 'send_otp'
+            return 'login' if exists else 'register'
         return 'unknown'
 
 
