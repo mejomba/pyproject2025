@@ -1,4 +1,5 @@
 import pytest
+from django.conf import settings
 from django.urls import reverse
 from rest_framework.test import APIClient
 from aaa.models.user_models import CustomUser
@@ -21,7 +22,7 @@ def test_verify_otp_success():
 
     assert response.status_code == 200
     assert 'access' in response.data
-    assert 'refresh' in response.data
+    assert 'refresh' in response.cookies[settings.SIMPLE_JWT['AUTH_COOKIE']].key
     assert CustomUser.objects.filter(phone='09120005555').exists()
 
 

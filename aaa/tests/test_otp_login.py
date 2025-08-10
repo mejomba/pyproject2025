@@ -1,4 +1,5 @@
 import pytest
+from django.conf import settings
 from django.urls import reverse
 from django.utils import timezone
 from rest_framework.test import APIClient
@@ -27,7 +28,7 @@ class TestOtpLogin:
 
         assert response.status_code == 200
         data = response.json()
-        assert 'access' in data and 'refresh' in data
+        assert 'access' in data and 'refresh' in response.cookies[settings.SIMPLE_JWT['AUTH_COOKIE']].key
         assert data['user']['phone'] == user.phone
         otp.refresh_from_db()
         assert otp.is_used is True

@@ -123,6 +123,13 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
+
+    'AUTH_COOKIE': 'refresh',
+    'AUTH_COOKIE_HTTP_ONLY': True,
+    'AUTH_COOKIE_SECURE': True,
+    'AUTH_COOKIE_SAMESITE': None, #'Lax',
+    'AUTH_COOKIE_MAX_AGE': 60 * 60 * 24,  # 24 hours
+    'AUTH_COOKIE_PATH': '/',
 }
 
 OTP_LIFE_TIME = 2  # min

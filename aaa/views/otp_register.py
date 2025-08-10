@@ -1,4 +1,6 @@
 # aaa/views/auth/otp_register.py
+from django.conf import settings
+from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from aaa.models import CustomUser
@@ -6,6 +8,9 @@ from aaa.models.otp import OTP
 from aaa.serializers.auth_signup import SignupSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.utils import timezone
+
+from aaa.utils.jwt_tokens import generate_jwt_response
+
 
 class OtpRegisterAPIView(APIView):
     def post(self, request):
@@ -31,11 +36,17 @@ class OtpRegisterAPIView(APIView):
         otp.is_used = True
         otp.save()
 
-        # صدور توکن
         refresh = RefreshToken.for_user(user)
 
-        return Response({
-            'user': SignupSerializer(user).data,
-            'access': str(refresh.access_token),
-            'refresh': str(refresh),
-        }, status=201)
+        xponse = Response(generate_jwt_response(user, SignupSerializer), status=status.HTTP_201_CREATED)
+
+        xponse.set_cookie(
+            key=settings.SIMPLE_JWT['AUTH_COOKIE'],  # usually 'refresh_token'
+            value=str(refresh),
+            httponly=settings.SIMPLE_JWT['AUTH_COOKIE_HTTP_ONLY'],
+            secure=settings.SIMPLE_JWT['AUTH_COOKIE_SECURE'],
+            samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE'],
+            max_age=settings.SIMPLE_JWT['AUTH_COOKIE_MAX_AGE'],
+            path=settings.SIMPLE_JWT['AUTH_COOKIE_PATH']
+        )
+        return xponse

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.urls import reverse
 from rest_framework.test import APITestCase
 from aaa.models import CustomUser
@@ -11,9 +12,9 @@ class PasswordLoginOrSignupTests(APITestCase):
 
     def test_signup_new_user_with_password(self):
         response = self.client.post(self.url, {"phone": self.phone, "password": self.password})
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
         self.assertIn("access", response.data)
-        self.assertIn("refresh", response.data)
+        self.assertIn("refresh", response.cookies[settings.SIMPLE_JWT['AUTH_COOKIE']].key)
         self.assertTrue(CustomUser.objects.filter(phone=self.phone).exists())
 
     def test_login_existing_user_with_password(self):

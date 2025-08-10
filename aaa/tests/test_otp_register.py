@@ -1,4 +1,5 @@
 import pytest
+from django.conf import settings
 from django.urls import reverse
 from django.utils import timezone
 from datetime import timedelta
@@ -28,7 +29,7 @@ def test_otp_register_success():
     assert response.status_code == 201
     data = response.json()
     assert 'access' in data
-    assert 'refresh' in data
+    assert 'refresh' in response.cookies[settings.SIMPLE_JWT['AUTH_COOKIE']].key
     assert data['user']['phone'] == phone
 
     user = CustomUser.objects.get(phone=phone)

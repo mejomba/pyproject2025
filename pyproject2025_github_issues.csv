@@ -1,0 +1,211 @@
+Title,Body,Labels,Milestone,Assignees,Project
+Implement signup & login with password,"Auth endpoints for password-based flow with pytest coverage and drf-spectacular docs.
+
+**Sprint**: Sprint 1
+**Area**: Backend
+**Start**: 2025-08-11
+**Due**: 2025-08-24","Auth,Backend,Docs,Tests",Sprint 1,,pyproject2025
+Implement signup & login with OTP (SMS & Email),"OTP endpoints using OTPAction.perform_otp with ScopedRateThrottle; pytest coverage.
+
+**Sprint**: Sprint 1
+**Area**: Backend
+**Start**: 2025-08-11
+**Due**: 2025-08-24","Auth,Backend,Tests",Sprint 1,,pyproject2025
+Auth API documentation,"Add endpoints to OpenAPI via drf-spectacular and examples.
+
+**Sprint**: Sprint 1
+**Area**: Backend
+**Start**: 2025-08-11
+**Due**: 2025-08-24","Auth,Backend,Docs",Sprint 1,,pyproject2025
+Auth forms (password + OTP),"Login/register UI with MUI, validation, error states.
+
+**Sprint**: Sprint 1
+**Area**: Frontend
+**Start**: 2025-08-11
+**Due**: 2025-08-24","Auth,Frontend",Sprint 1,,pyproject2025
+JWT & Refresh handling,"Token storage, refresh flow, interceptors in Next.js axios client.
+
+**Sprint**: Sprint 1
+**Area**: Frontend
+**Start**: 2025-08-11
+**Due**: 2025-08-24","Auth,Frontend",Sprint 1,,pyproject2025
+Google & GitHub social login,"OAuth flows, callback endpoints, pytest.
+
+**Sprint**: Sprint 2
+**Area**: Backend
+**Start**: 2025-08-25
+**Due**: 2025-09-07","Auth,Backend,Tests",Sprint 2,,pyproject2025
+Change/reset password APIs,"Endpoints with rate limits and email/SMS templates.
+
+**Sprint**: Sprint 2
+**Area**: Backend
+**Start**: 2025-08-25
+**Due**: 2025-09-07",Backend,Sprint 2,,pyproject2025
+User profile API,"View/update profile with avatar upload; tests & docs.
+
+**Sprint**: Sprint 2
+**Area**: Backend
+**Start**: 2025-08-25
+**Due**: 2025-09-07","Backend,Docs,Tests",Sprint 2,,pyproject2025
+Social login UI + wiring,"Buttons, redirects, state handling.
+
+**Sprint**: Sprint 2
+**Area**: Frontend
+**Start**: 2025-08-25
+**Due**: 2025-09-07","Auth,Frontend",Sprint 2,,pyproject2025
+Profile page (view/edit),"MUI forms, avatar upload, optimistic updates.
+
+**Sprint**: Sprint 2
+**Area**: Frontend
+**Start**: 2025-08-25
+**Due**: 2025-09-07",Frontend,Sprint 2,,pyproject2025
+Define roles & permissions,"Roles: student, instructor, admin; DRF permissions & tests.
+
+**Sprint**: Sprint 3
+**Area**: Backend
+**Start**: 2025-09-08
+**Due**: 2025-09-21","Backend,RBAC,Tests",Sprint 3,,pyproject2025
+Role management API,"Assign/revoke roles; audit fields.
+
+**Sprint**: Sprint 3
+**Area**: Backend
+**Start**: 2025-09-08
+**Due**: 2025-09-21","Backend,RBAC",Sprint 3,,pyproject2025
+Client-side access control,"Guards/HOCs, conditional rendering per role.
+
+**Sprint**: Sprint 3
+**Area**: Frontend
+**Start**: 2025-09-08
+**Due**: 2025-09-21","Frontend,RBAC",Sprint 3,,pyproject2025
+Course models & CRUD APIs,"Create/update/soft-delete/list/detail; pagination; tests.
+
+**Sprint**: Sprint 4
+**Area**: Backend
+**Start**: 2025-09-22
+**Due**: 2025-10-05","Backend,Courses,Tests",Sprint 4,,pyproject2025
+Student enrollment API,"Enroll/unenroll; validations; tests.
+
+**Sprint**: Sprint 4
+**Area**: Backend
+**Start**: 2025-09-22
+**Due**: 2025-10-05","Backend,Courses,Tests",Sprint 4,,pyproject2025
+Media upload (local),"Video/file upload endpoints; size limits.
+
+**Sprint**: Sprint 4
+**Area**: Backend
+**Start**: 2025-09-22
+**Due**: 2025-10-05","Backend,Courses",Sprint 4,,pyproject2025
+Courses list with search & filter,"Pagination, keyword search, category filter.
+
+**Sprint**: Sprint 4
+**Area**: Frontend
+**Start**: 2025-09-22
+**Due**: 2025-10-05","Courses,Frontend",Sprint 4,,pyproject2025
+Course detail page,"Curriculum, instructor info, enroll button.
+
+**Sprint**: Sprint 4
+**Area**: Frontend
+**Start**: 2025-09-22
+**Due**: 2025-10-05","Courses,Frontend",Sprint 4,,pyproject2025
+Enrollment flow,"Enroll/unenroll; success/error handling.
+
+**Sprint**: Sprint 4
+**Area**: Frontend
+**Start**: 2025-09-22
+**Due**: 2025-10-05","Courses,Frontend",Sprint 4,,pyproject2025
+Instructor courses API,"List courses created by instructor; students per course.
+
+**Sprint**: Sprint 5
+**Area**: Backend
+**Start**: 2025-10-06
+**Due**: 2025-10-19","Backend,Courses",Sprint 5,,pyproject2025
+Student courses API,"List enrolled courses with progress stub.
+
+**Sprint**: Sprint 5
+**Area**: Backend
+**Start**: 2025-10-06
+**Due**: 2025-10-19","Backend,Courses",Sprint 5,,pyproject2025
+Student dashboard,"My courses, progress placeholders.
+
+**Sprint**: Sprint 5
+**Area**: Frontend
+**Start**: 2025-10-06
+**Due**: 2025-10-19",Frontend,Sprint 5,,pyproject2025
+Instructor dashboard,"Manage courses, view enrolled students.
+
+**Sprint**: Sprint 5
+**Area**: Frontend
+**Start**: 2025-10-06
+**Due**: 2025-10-19",Frontend,Sprint 5,,pyproject2025
+Exam & question models + APIs,"CRUD for exams/questions; ordering; tests.
+
+**Sprint**: Sprint 6
+**Area**: Backend
+**Start**: 2025-10-20
+**Due**: 2025-11-02","Backend,Exams,Tests",Sprint 6,,pyproject2025
+Submit answers API,"Accept responses; basic scoring; tests.
+
+**Sprint**: Sprint 6
+**Area**: Backend
+**Start**: 2025-10-20
+**Due**: 2025-11-02","Backend,Exams,Tests",Sprint 6,,pyproject2025
+Exam UI,"Render questions, validation, submit flow.
+
+**Sprint**: Sprint 6
+**Area**: Frontend
+**Start**: 2025-10-20
+**Due**: 2025-11-02","Exams,Frontend",Sprint 6,,pyproject2025
+Results view,"Show score and per-question feedback.
+
+**Sprint**: Sprint 6
+**Area**: Frontend
+**Start**: 2025-10-20
+**Due**: 2025-11-02","Exams,Frontend",Sprint 6,,pyproject2025
+Design Python executor (sandboxed),"Resource limits, timeouts, filesystem isolation.
+
+**Sprint**: Sprint 7
+**Area**: Backend
+**Start**: 2025-11-03
+**Due**: 2025-11-16","AutoGrader,Backend",Sprint 7,,pyproject2025
+Connect executor to backend,"Queue/API integration; tests & security checks.
+
+**Sprint**: Sprint 7
+**Area**: Backend
+**Start**: 2025-11-03
+**Due**: 2025-11-16","AutoGrader,Backend,Tests",Sprint 7,,pyproject2025
+Code submission UI,"Editor, run/grade actions, show runtime/output/errors.
+
+**Sprint**: Sprint 7
+**Area**: Frontend
+**Start**: 2025-11-03
+**Due**: 2025-11-16","AutoGrader,Frontend",Sprint 7,,pyproject2025
+Performance & caching,"DB indexes, select_related/prefetch, Redis caching.
+
+**Sprint**: Sprint 8
+**Area**: Backend
+**Start**: 2025-11-17
+**Due**: 2025-11-30","Backend,Performance",Sprint 8,,pyproject2025
+Test coverage & final API docs,"Raise coverage; polish OpenAPI spec.
+
+**Sprint**: Sprint 8
+**Area**: Backend
+**Start**: 2025-11-17
+**Due**: 2025-11-30","Backend,Docs",Sprint 8,,pyproject2025
+SEO & performance tuning,"Lighthouse fixes, lazy loading, meta tags.
+
+**Sprint**: Sprint 8
+**Area**: Frontend
+**Start**: 2025-11-17
+**Due**: 2025-11-30","Frontend,Performance",Sprint 8,,pyproject2025
+E2E tests,"Playwright/Cypress for core flows.
+
+**Sprint**: Sprint 8
+**Area**: Frontend
+**Start**: 2025-11-17
+**Due**: 2025-11-30",Frontend,Sprint 8,,pyproject2025
+CI/CD & deployment,"GitHub Actions, staging/prod deploy, rollback plan.
+
+**Sprint**: Sprint 8
+**Area**: DevOps
+**Start**: 2025-11-17
+**Due**: 2025-11-30",DevOps,Sprint 8,,pyproject2025

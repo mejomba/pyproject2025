@@ -1,3 +1,4 @@
+from django.conf import settings
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -15,5 +16,15 @@ class OTPVerifyView(APIView):
             user = serializer.save()
             refresh = RefreshToken.for_user(user)
             track_device(request, user, refresh)
-            return Response(generate_jwt_response(user, SignupSerializer), status=status.HTTP_200_OK)
+            xponse = Response(generate_jwt_response(user, SignupSerializer), status=status.HTTP_200_OK)
+            xponse.set_cookie(
+                key=settings.SIMPLE_JWT['AUTH_COOKIE'],  # usually 'refresh_token'
+                value=str(refresh),
+                httponly=settings.SIMPLE_JWT['AUTH_COOKIE_HTTP_ONLY'],
+                secure=settings.SIMPLE_JWT['AUTH_COOKIE_SECURE'],
+                samesite=settings.SIMPLE_JWT['AUTH_COOKIE_SAMESITE'],
+                max_age=settings.SIMPLE_JWT['AUTH_COOKIE_MAX_AGE'],
+                path=settings.SIMPLE_JWT['AUTH_COOKIE_PATH']
+            )
+            return xponse
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

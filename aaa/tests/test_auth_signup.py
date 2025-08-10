@@ -1,4 +1,5 @@
 import pytest
+from django.conf import settings
 from rest_framework.test import APIClient
 from django.urls import reverse
 from aaa.models.user_models import CustomUser
@@ -17,7 +18,7 @@ def test_signup_success():
 
     assert response.status_code == 201
     assert 'access' in response.data
-    assert 'refresh' in response.data
+    assert 'refresh' in response.cookies[settings.SIMPLE_JWT['AUTH_COOKIE']].key
     assert response.data['user']['phone'] == '09123456789'
     assert CustomUser.objects.filter(phone='09123456789').exists()
 
