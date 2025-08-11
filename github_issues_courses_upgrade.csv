@@ -1,0 +1,68 @@
+Title,Body,Labels,Milestone,Assignees,Project
+Courses: Add CourseStaff (mentors via through model),"Implement CourseStaff through-model to support multiple mentors per course.
+
+**Acceptance Criteria**
+- Course.mentors ManyToMany via CourseStaff
+- UniqueConstraint(course, user, role)
+- Admin + DRF serializers & endpoints to manage mentors
+- Tests: create/update/remove mentor; permissions (instructor/admin only)
+","Courses,Backend,Tests,Docs",Sprint 1 – Courses Upgrade,,pyproject2025
+Courses: Introduce polymorphic-like content via GFK,"Convert Lesson to reference specialized content models via GenericForeignKey.
+
+**Tasks**
+- Add Lesson.kind (video|article|image|quiz|assignment|project)
+- Add content_type + object_id + content_object to Lesson
+- New models: VideoContent, ArticleContent, ImageContent
+- Data migration: move existing Lesson.video/content into new models
+- Back-compat: keep old fields during migration; remove in a follow-up
+
+**Tests**
+- CRUD Lesson with each content type
+- Data migration correctness
+","Courses,Backend,Tests,Docs",Sprint 1 – Courses Upgrade,,pyproject2025
+Courses: Grading schema (weights must sum to 100),"Add grading support per course using weighted items.
+
+**Tasks**
+- Model GradedSpec (course, lesson, weight)
+- Validation: sum(weights for course) == 100 on publish
+- Model Grade (student, graded_spec, awarded_points, max_points)
+- API: list/update grading rules; student grades; course final percent
+
+**Tests**
+- Validation for sum=100
+- Compute final grade for a student with multiple items
+","Courses,Backend,Tests,Docs",Sprint 1 – Courses Upgrade,,pyproject2025
+Permissions: IsCourseInstructorOrMentor for write access,"Implement DRF permission that allows write for course instructor/mentors; read-only otherwise.
+
+**Tasks**
+- Permission class IsCourseInstructorOrMentor
+- Integrate with Course/Module/Lesson ViewSets
+- Ensure nested lookups enforce course_pk/module_pk constraints
+
+**Tests**
+- Mentor can create/update within their course
+- Student cannot modify content
+","Courses,Backend,Tests",Sprint 1 – Courses Upgrade,,pyproject2025
+API: Endpoints for mentors and grading,"Add REST endpoints:
+- `courses/{id}/staff/` CRUD (mentor management)
+- `courses/{course_pk}/grades/summary/` (final grade per student)
+- `courses/{course_pk}/modules/{module_pk}/lessons/{lesson_pk}/graded-spec/` CRUD
+
+**Docs**
+- Update OpenAPI examples
+
+**Tests**
+- Happy path + permission denied cases
+","Courses,Backend,Docs,Tests",Sprint 1 – Courses Upgrade,,pyproject2025
+Data migration: Move Lesson.video/content to GFK content models,"Write a data migration that creates VideoContent / ArticleContent for existing lessons and wires GFK.
+
+**Checks**
+- Idempotent migration (safe re-run)
+- Rollback notes
+","Courses,Backend,Tests",Sprint 1 – Courses Upgrade,,pyproject2025
+Docs: Update developer guide for Courses architecture,"Update docs to reflect mentors via CourseStaff, polymorphic content via GFK, and grading schema.
+
+**Deliverables**
+- diagrams/courses_architecture.md
+- API examples for new endpoints
+","Docs,Courses",Sprint 1 – Courses Upgrade,,pyproject2025
