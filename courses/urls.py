@@ -21,9 +21,26 @@ lessons_router.register(r'lessons', LessonViewSet, basename='module-lessons')
 
 urlpatterns = router.urls + modules_router.urls + lessons_router.urls
 
+# # Courses
 # <URLPattern '^courses/$' [name='course-list']>
 # <URLPattern '^courses/(?P<pk>[^/.]+)/$' [name='course-detail']>
+#
+# # Modules
 # <URLPattern '^courses/(?P<course_pk>[^/.]+)/modules/$' [name='course-modules-list']>
 # <URLPattern '^courses/(?P<course_pk>[^/.]+)/modules/(?P<pk>[^/.]+)/$' [name='course-modules-detail']>
+#
+# # Staff
+# <URLPattern '^courses/(?P<course_pk>[^/.]+)/staff/$' [name='course-staff-list']>
+# <URLPattern '^courses/(?P<course_pk>[^/.]+)/staff/(?P<pk>[^/.]+)/$' [name='course-staff-detail']>
+#
+# # Graded Spec
+# <URLPattern '^courses/(?P<course_pk>[^/.]+)/graded-spec/$' [name='course-graded-spec-list']>
+# <URLPattern '^courses/(?P<course_pk>[^/.]+)/graded-spec/(?P<pk>[^/.]+)/$' [name='course-graded-spec-detail']>
+#
+# # Grades
+# <URLPattern '^courses/(?P<course_pk>[^/.]+)/grades/$' [name='course-grades-list']>
+# <URLPattern '^courses/(?P<course_pk>[^/.]+)/grades/(?P<pk>[^/.]+)/$' [name='course-grades-detail']>
+#
+# # Lessons
 # <URLPattern '^courses/(?P<course_pk>[^/.]+)/modules/(?P<module_pk>[^/.]+)/lessons/$' [name='module-lessons-list']>
 # <URLPattern '^courses/(?P<course_pk>[^/.]+)/modules/(?P<module_pk>[^/.]+)/lessons/(?P<pk>[^/.]+)/$' [name='module-lessons-detail']>
