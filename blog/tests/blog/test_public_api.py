@@ -2,13 +2,14 @@ import pytest
 from django.urls import reverse
 from django.utils import timezone
 from blog.models.post import Post
-from tests.factories.blog import PostFactory
+from blog.tests.factories.blog import PostFactory
 
 pytestmark = pytest.mark.django_db
 
 # You may need to adjust these names to match your URL conf if different.
 PUBLIC_LIST = "blog:blog-posts-list"
 PUBLIC_DETAIL = "blog:blog-posts-detail"
+
 
 def test_public_list_only_published(api_client):
     PostFactory(status=Post.STATUS_DRAFT)
@@ -20,6 +21,7 @@ def test_public_list_only_published(api_client):
     assert res.status_code == 200
     ids = [obj["id"] for obj in res.json().get("results", res.json())]
     assert pub.id in ids
+
 
 def test_public_detail_by_slug(api_client):
     past = timezone.now() - timezone.timedelta(days=1)

@@ -8,8 +8,10 @@ class UserFactory(factory.django.DjangoModelFactory):
         model = User
         skip_postgeneration_save = True
 
-    username = factory.Sequence(lambda n: f"user{n}")
-    email = factory.LazyAttribute(lambda o: f"{o.username}@example.com")
+    # username = factory.Sequence(lambda n: f"user{n}")
+    phone = factory.Sequence(lambda n: f"0911123450{n}")
+    email = factory.LazyAttribute(lambda o: f"{o.phone}@example.com")
+    password = factory.PostGenerationMethodCall("set_password", "Pass#12345")
 
     @factory.post_generation
     def password(obj, create, extracted, **kwargs):
@@ -17,6 +19,7 @@ class UserFactory(factory.django.DjangoModelFactory):
         obj.set_password(pwd)
         if create:
             obj.save()
+
 
 class AdminFactory(UserFactory):
     is_staff = True

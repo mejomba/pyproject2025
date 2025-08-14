@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth import get_user_model
-
+from django.utils.text import slugify
 
 CustomUser = get_user_model()
 
@@ -57,6 +57,20 @@ class AbstractCommWithUserModel(AbstractCommModel):
 
 class Category(AbstractCommWithUserModel):
     title = models.CharField(max_length=128)
-    parent = models.ForeignKey('self', on_delete=models.DO_NOTHING, related_name='cats')
+    parent = models.ForeignKey('self', on_delete=models.DO_NOTHING, related_name='children')
     is_menu = models.BooleanField(default=False)
+    slug = models.SlugField(max_length=140, unique=True, blank=True)
+
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
+        indexes = [models.Index(fields=["slug"])]
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)[:140]
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
 

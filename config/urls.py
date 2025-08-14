@@ -10,6 +10,7 @@ urlpatterns = [
         # path('courses/', include('courses.urls', namespace='courses')),
         path('courses/', include(('courses.urls', 'courses'), namespace='courses')),
         path('auth/', include(('aaa.urls.auth_urls', 'auth'), namespace='auth')),
+        path('blog/', include(('blog.urls', 'blog'), namespace='blog')),
     ])),
 
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

@@ -40,7 +40,7 @@ class Post(AbstractCommWithUserModel):
     content = models.TextField()
     thumbnail = models.ImageField(upload_to=Utils.generic_image_path, null=True, blank=True)
     slug = models.SlugField(max_length=220, unique=True, blank=True)
-    category = models.ForeignKey("blog.Category", null=True, blank=True,
+    category = models.ForeignKey("core.Category", null=True, blank=True,
                                  on_delete=models.DO_NOTHING, related_name="posts")
     # CKEditor:
     content = RichTextField()
