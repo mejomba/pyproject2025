@@ -1,0 +1,28 @@
+
+import factory
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+class UserFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = User
+        skip_postgeneration_save = True
+
+    # username = factory.Sequence(lambda n: f"user{n}")
+    phone = factory.Sequence(lambda n: f"0911123450{n}")
+    email = factory.LazyAttribute(lambda o: f"{o.phone}@example.com")
+    password = factory.PostGenerationMethodCall("set_password", "Pass#12345")
+
+    @factory.post_generation
+    def password(obj, create, extracted, **kwargs):
+        pwd = extracted or "Pass#12345"
+        obj.set_password(pwd)
+        if create:
+            obj.save()
+
+class InstructorFactory(UserFactory):
+    is_staff = True
+
+class StudentFactory(UserFactory):
+    pass

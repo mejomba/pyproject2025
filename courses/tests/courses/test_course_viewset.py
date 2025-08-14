@@ -4,6 +4,7 @@ from rest_framework.test import APIClient
 from django.urls import reverse
 from aaa.models import CustomUser
 from courses.models.course import Course
+from courses.tests.conftest import api_client
 
 
 @pytest.fixture
@@ -11,9 +12,9 @@ def instructor_user(db):
     return CustomUser.objects.create_user(phone='09120000001', password='testpass', first_name='Ali', last_name='Instructor')
 
 
-@pytest.fixture
-def api_client():
-    return APIClient()
+# @pytest.fixture
+# def api_client():
+#     return APIClient()
 
 
 @pytest.fixture
