@@ -21,6 +21,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    "ckeditor",
+    "ckeditor_uploader",
     'aaa',
     'core',
     'blog',
@@ -146,6 +148,16 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'API documentation for pyproject2025 e-learning platform',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
+
+    # # ترتیب و توضیح گروه‌ها (Tags) در Swagger UI
+    # "TAGS": [
+    #     {"name": "Auth", "description": "Authentication & authorization"},
+    #     {"name": "Courses", "description": "Courses, modules, lessons"},
+    #     {"name": "Courses • Grading", "description": "Weights & grades"},
+    #     {"name": "Courses • Staff", "description": "Instructors & mentors"},
+    #     {"name": "Blog", "description": "Blog posts & categories"},
+    #     {"name": "Admin", "description": "Administrative operations"},
+    # ],
 }
 
 
@@ -164,3 +176,21 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"   # os.path.join(BASE_DIR, "media")
+
+CKEDITOR_UPLOAD_PATH = "uploads/ck/"
+
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_ALLOW_NONIMAGE_FILES = True
+
+CKEDITOR_CONFIGS = {
+    "default": {
+        "toolbar": "full",
+        "height": 300,
+        "width": "100%",
+        # نمونه: فعال کردن پست‌پروسس لینک/تصویر
+        # "extraPlugins": ",".join(["uploadimage", "justify", "autolink"]),
+    }
+}

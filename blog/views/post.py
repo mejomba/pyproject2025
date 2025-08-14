@@ -3,6 +3,8 @@ from rest_framework import viewsets, permissions, filters
 from blog.models.post import Post
 from blog.serializers.post import PostListSerializer, PostDetailSerializer, PostWriteSerializer
 
+from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiExample
+
 
 class IsAdminOrOwner(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
@@ -35,3 +37,14 @@ class AdminPostViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user, creator_user=self.request.user)
+
+    @extend_schema(tags=['jafar'], examples=[
+        OpenApiExample(
+            "CreateCourseExample",
+            summary="Minimal payload",
+            description="نمونه ساده برای ساخت دوره",
+            value={"title": "Django 101", "slug": "django-101"},
+        )
+    ])
+    def create(self, request, *args, **kwargs):
+        return super().create(request, *args, **kwargs)
