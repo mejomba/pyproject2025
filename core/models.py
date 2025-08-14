@@ -57,7 +57,7 @@ class AbstractCommWithUserModel(AbstractCommModel):
 
 class Category(AbstractCommWithUserModel):
     title = models.CharField(max_length=128)
-    parent = models.ForeignKey('self', on_delete=models.DO_NOTHING, related_name='children')
+    parent = models.ForeignKey('self', on_delete=models.DO_NOTHING, related_name='children', null=True, blank=True)
     is_menu = models.BooleanField(default=False)
     slug = models.SlugField(max_length=140, unique=True, blank=True)
 
