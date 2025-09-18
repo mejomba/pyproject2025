@@ -1,5 +1,5 @@
 from django.db import models
-from core.models import AbstractCommWithUserModel
+from core.models import AbstractCommWithUserModel, Tag
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.utils.text import slugify
@@ -35,6 +35,7 @@ class Post(AbstractCommWithUserModel):
         (STATUS_ARCHIVED, "Archived"),
     ]
 
+    tags = models.ManyToManyField(Tag, related_name='posts')
     author = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='blog_posts')
     title = models.CharField(max_length=255)
     content = models.TextField()
