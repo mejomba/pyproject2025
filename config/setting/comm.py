@@ -91,7 +91,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
 
 USE_I18N = True
 
@@ -194,3 +194,9 @@ CKEDITOR_CONFIGS = {
         # "extraPlugins": ",".join(["uploadimage", "justify", "autolink"]),
     }
 }
+
+
+AUTHENTICATION_BACKENDS = [
+    'aaa.auth_backend.PhoneBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
