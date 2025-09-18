@@ -105,6 +105,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'aaa.CustomUser'
 
 REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'core.pagination.MicroResultsSetPagination',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
