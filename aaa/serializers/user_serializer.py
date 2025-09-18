@@ -41,3 +41,14 @@ class CustomUserCreateSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+
+
+class CustomUserAsAuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = [
+            'full_name',
+            'avatar',
+        ]
+
+        read_only_fields = ['full_name', 'avatar']

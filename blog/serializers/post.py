@@ -1,14 +1,17 @@
 from rest_framework import serializers
+
+from aaa.serializers.user_serializer import CustomUserAsAuthorSerializer
 from blog.models.post import Post
 
 
 class PostListSerializer(serializers.ModelSerializer):
     reading_time = serializers.IntegerField(source="reading_time_minutes", read_only=True)
+    author = CustomUserAsAuthorSerializer()
 
     class Meta:
         model = Post
         fields = ["id", "title", "slug", "excerpt", "thumbnail", "publish_at", "reading_time", "category", "author",
-                  "status"]
+                  "status", "view_count", "tags"]
 
 
 class PostDetailSerializer(serializers.ModelSerializer):
