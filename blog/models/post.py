@@ -60,6 +60,7 @@ class Post(AbstractCommWithUserModel):
     # منیجرها:
     # active_objects = ActiveObjectsManager()  # از AbstractCommWithUserModel → ActiveObjectsManager
     published = PublishedManager()        # دسترسی سریع به پست‌های منتشرشده
+    objects = models.Manager()
 
     class Meta:
         ordering = ("-publish_at", "-created_at")
