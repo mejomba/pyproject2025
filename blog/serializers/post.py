@@ -2,11 +2,13 @@ from rest_framework import serializers
 
 from aaa.serializers.user_serializer import CustomUserAsAuthorSerializer
 from blog.models.post import Post
+from core.serializers import TagSerializer
 
 
 class PostListSerializer(serializers.ModelSerializer):
     reading_time = serializers.IntegerField(source="reading_time_minutes", read_only=True)
     author = CustomUserAsAuthorSerializer()
+    tags = TagSerializer(read_only=True, many=True)
 
     class Meta:
         model = Post
@@ -16,11 +18,13 @@ class PostListSerializer(serializers.ModelSerializer):
 
 class PostDetailSerializer(serializers.ModelSerializer):
     reading_time = serializers.IntegerField(source="reading_time_minutes", read_only=True)
+    author = CustomUserAsAuthorSerializer()
+    tags = TagSerializer(read_only=True, many=True)
 
     class Meta:
         model = Post
         fields = ["id", "title", "slug", "content", "excerpt", "thumbnail", "publish_at", "reading_time",
-                  "seo_title", "seo_description", "category", "author", "status"]
+                  "seo_title", "seo_description", "category", "author", "status", "tags"]
 
 
 class PostWriteSerializer(serializers.ModelSerializer):
