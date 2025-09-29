@@ -78,3 +78,6 @@ class Category(AbstractCommWithUserModel):
 class Tag(AbstractCommModel):
     title = models.CharField(max_length=32)
 
+    def __str__(self):
+        return self.title
+
